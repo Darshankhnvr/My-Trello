@@ -1,0 +1,5 @@
+{
+  "name": "MyTrellos",
+  "description": "A smart, Trello-style Kanban board for task management.",
+  "requestFramePermissions": []
+}
