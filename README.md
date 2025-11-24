@@ -80,7 +80,7 @@ Since this project uses an `importmap` architecture in `index.html` (no build st
 2.  **OR** (Recommended) Use a simple HTTP server to serve the files:
 
 ```bash
-npx serve .
+npm run dev.
 ```
 Then open the localhost link provided (usually `http://localhost:3000`).
 
