@@ -1,17 +1,23 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import 'dotenv/config';
 import { Board } from './models/Board.js';
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
 app.use(express.json({ limit: '10mb' })); // Increased limit for large board states
 
 // Database Connection
-const MONGO_URI = "mongodb+srv://darshankgoudahnvr2020_db_user:QsdNOBxHaDDMPPrw@cluster0.zs3tcjn.mongodb.net/?appName=Cluster0";
+const MONGO_URI = process.env.MONGODB_URI;
+
+if (!MONGO_URI) {
+  console.error('❌ Missing MONGODB_URI in environment variables (.env)');
+  process.exit(1);
+}
 
 mongoose.connect(MONGO_URI)
   .then(() => console.log('✅ MongoDB Connected Successfully'))

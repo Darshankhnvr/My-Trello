@@ -24,7 +24,7 @@ A robust, full-stack Kanban board application inspired by Trello. This applicati
 - **Frontend**: React 19, Tailwind CSS, Lucide Icons, `@dnd-kit` for physics-based drag-and-drop.
 - **Backend**: Node.js, Express REST API.
 - **Database**: Mongoose ODM with MongoDB Atlas.
-- **Architecture**: Component-based architecture with clean separation of concerns (Services, Models, Components).
+- **Architecture**: Component-based architecture with clean separation of concerns (Models, Components, Server).
 
 ---
 
@@ -50,14 +50,14 @@ Open your terminal in the project root and install the required server packages:
 npm install express mongoose cors dotenv
 ```
 
-### 2. Configure Environment (Optional)
-Currently, the `MONGO_URI` is hardcoded in `server/server.js`. For best practices, create a `.env` file in the root:
+### 2. Configure Environment (Required)
+Create a `.env` file in the project root to store your MongoDB connection string and port. Do NOT commit secrets to source control.
 
 ```env
-MONGO_URI=your_mongodb_connection_string_here
+MONGODB_URI=your_mongodb_connection_string_here
 PORT=5000
 ```
-*Note: If you skip this, the app will use the default connection string provided in `server.js`.*
+The server reads MONGODB_URI from `.env` and will exit with an error if it is missing.
 
 ---
 
@@ -91,7 +91,6 @@ Then open the localhost link provided (usually `http://localhost:3000`).
 ```
 /
 ├── components/         # React UI Components (Column, TaskCard, TaskModal)
-├── services/           # External service integrations (AI/Gemini)
 ├── server/             # Backend Logic
 │   ├── models/         # Mongoose Database Schemas
 │   └── server.js       # Express API Entry point
@@ -109,4 +108,3 @@ Then open the localhost link provided (usually `http://localhost:3000`).
 | `POST` | `/api/boards` | Create a new board |
 | `PUT` | `/api/boards/:id` | Update a specific board (Sync state) |
 | `DELETE` | `/api/boards/:id` | Delete a board |
-# My-Trello
